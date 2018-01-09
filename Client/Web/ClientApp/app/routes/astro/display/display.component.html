@@ -1,0 +1,61 @@
+﻿<!--<div style="border: 1px solid red">display Component</div>
+
+<ul>
+    <li *ngFor="let horoscope of horoscopes">
+        {{horoscope?.sign && horoscope?.sign?.name}}
+    </li>-->
+
+
+
+
+
+    <div class="col-lg-4 col-md-6 col-sm-1" *ngFor="let horoscope of horoscopes">
+        <!-- START widget-->
+        <div class="panel widget">
+            <div class="panel-body">
+                <div class="row row-table">
+                    <div class="col-xs-6 text-center">
+                        <img class="img-circle thumb96" src="assets/img/signs/{{horoscope?.sign?.technicalName}}.png" alt="Image" />
+                    </div>
+                    <div class="col-xs-6">
+                        <h3 class="mt0">{{horoscope?.sign?.name}}</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-sm">
+                               {{horoscope?.globalText}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body bg-inverse">
+                <div class="row row-table text-center">
+                    <div class="panel-body">
+                        <div class="row row-table text-center">
+                            
+                            <div class="col-xs-4"  *ngFor="let topic of horoscope?.topics">
+                                <p>{{topic?.title}}</p>
+                                <!--<progressbar [max]="topic.totalStars" [value]="topic.stars"><span style="color:white; white-space:nowrap;">{{topic?.stars}} / {{topic?.totalStars}}</span></progressbar>-->
+                                <rating [ngModel]="topic.stars" [max]="topic.totalStars" readonly="true" stateOn="fa fa-star text-yellow" stateOff="fa fa-star-o"></rating>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<ul>
+                        <li *ngFor="let topic of horoscope?.topics">{{topic?.title}}<progressbar [max]="topic.totalStars" [value]="topic.stars"><span style="color:white; white-space:nowrap;">{{topic?.stars}} / {{topic?.totalStars}}</span></progressbar></li>
+                    </ul>-->
+                    <!--<div class="col-xs-4">
+                        <p class="m0 h3">700</p>
+                        <p class="m0 text-muted">Followers</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="m0 h3">1500</p>
+                        <p class="m0 text-muted">Following</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="m0 h3">510</p>
+                        <p class="m0 text-muted">Loved</p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- END widget-->
+    </div>

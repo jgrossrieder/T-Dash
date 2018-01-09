@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Astro\Common.Astro.Model\Common.Astro.Model.csproj" />
+    <ProjectReference Include="..\..\Services\AstroRetrievers\AstroRetrievers.Common\AstroRetrievers.Common.csproj" />
+  </ItemGroup>
+
+</Project>

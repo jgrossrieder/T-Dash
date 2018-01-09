@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>false</TypeScriptCompileBlocked>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\assets\img\signs\aquarius.png" />
+    <Content Remove="wwwroot\assets\img\signs\aries.png" />
+    <Content Remove="wwwroot\assets\img\signs\cancer.png" />
+    <Content Remove="wwwroot\assets\img\signs\capricorn.png" />
+    <Content Remove="wwwroot\assets\img\signs\gemini.png" />
+    <Content Remove="wwwroot\assets\img\signs\leo.png" />
+    <Content Remove="wwwroot\assets\img\signs\libra.png" />
+    <Content Remove="wwwroot\assets\img\signs\pisces.png" />
+    <Content Remove="wwwroot\assets\img\signs\sagittarus.png" />
+    <Content Remove="wwwroot\assets\img\signs\scorpio.png" />
+    <Content Remove="wwwroot\assets\img\signs\taurus.png" />
+    <Content Remove="wwwroot\assets\img\signs\virgo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\routes\astro\astro.service.ts" />
+    <None Remove="ClientApp\app\routes\astro\horoscope.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.AngularServices" Version="1.1.0-beta-000002" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ClientApp\app\routes\astro\astro.service.ts">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\assets\img\signs\aquarius.png" />
+    <None Include="wwwroot\assets\img\signs\aries.png" />
+    <None Include="wwwroot\assets\img\signs\cancer.png" />
+    <None Include="wwwroot\assets\img\signs\capricorn.png" />
+    <None Include="wwwroot\assets\img\signs\gemini.png" />
+    <None Include="wwwroot\assets\img\signs\leo.png" />
+    <None Include="wwwroot\assets\img\signs\libra.png" />
+    <None Include="wwwroot\assets\img\signs\pisces.png" />
+    <None Include="wwwroot\assets\img\signs\sagittarus.png" />
+    <None Include="wwwroot\assets\img\signs\scorpio.png" />
+    <None Include="wwwroot\assets\img\signs\taurus.png" />
+    <None Include="wwwroot\assets\img\signs\virgo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Astro\Common.Astro.Model\Common.Astro.Model.csproj" />
+    <ProjectReference Include="..\..\Common\Astro\Common.Astro.Repository\Common.Astro.Repository.csproj" />
+    <ProjectReference Include="..\..\Services\AstroRetrievers\AstroRetrievers.Common\AstroRetrievers.Common.csproj" />
+    <ProjectReference Include="..\..\Tests\Tests.Mocks\Tests.Mocks.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\routes\astro\horoscope.ts" />
+  </ItemGroup>
+
+  <Target Name="MyPreCompileTarget" BeforeTargets="PrepareForPublish">
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+  </Target>
+
+</Project>

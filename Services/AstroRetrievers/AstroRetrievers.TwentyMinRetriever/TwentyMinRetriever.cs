@@ -39,23 +39,19 @@ namespace AstroRetrievers.TwentyMinRetriever
             {
                 await DownloadFile(pdfUrl, localPath);
                 List<Horoscope> horoscopes = ExtractHoroscope( localPath);
-                if (horoscopes == null)
+                if (horoscopes == null || !horoscopes.Any())
                 {
-                    horoscopeSet.Status = HoroscopeStatus.Error;
+                    horoscopeSet.Status = HoroscopeStatus.Unavailable;
                 }
-                else if (horoscopes.Any())
+                else 
                 {
                     horoscopeSet.Horoscopes = new ObservableCollection<Horoscope>(horoscopes);
                     horoscopeSet.Status = HoroscopeStatus.Valid;
                 }
-                else
-                {
-                    horoscopeSet.Status = HoroscopeStatus.Unavailable;
-                }
             }
             catch (Exception )
             {
-                horoscopeSet.Status = HoroscopeStatus.Unavailable;
+                horoscopeSet.Status = HoroscopeStatus.Error;
             }
 
 
@@ -64,23 +60,23 @@ namespace AstroRetrievers.TwentyMinRetriever
 
         private List<Horoscope> ExtractHoroscope(string localPath)
         {
-            try
-            {
                 using (FileStream fs = File.OpenRead(localPath))
                 {
                     using (PdfLoadedDocument loadedDocument = new PdfLoadedDocument(fs))
                     {
                         _logger.LogInformation($"Extracting horoscope from {localPath}");
                         String pageAsText = FindPageWithHoroscope(loadedDocument);
-                        return ParseHoroscope(pageAsText);
+                        if (pageAsText != null)
+                        {
+                            return ParseHoroscope(pageAsText);
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
 
                 }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
         }
 
         private List<Horoscope> ParseHoroscope(string pageAsText)

@@ -15,15 +15,15 @@ var SettingsService = /** @class */ (function () {
         // User Settings
         // -----------------------------------
         this.user = {
-            name: 'John',
+            name: 'Julien',
             job: 'ng-developer',
             picture: 'assets/img/user/02.jpg'
         };
         // App Settings
         // -----------------------------------
         this.app = {
-            name: 'Angle',
-            description: 'Angular Bootstrap Admin Template',
+            name: 'T-Dash',
+            description: 'Team Dashboard',
             year: ((new Date()).getFullYear())
         };
         // Layout Settings

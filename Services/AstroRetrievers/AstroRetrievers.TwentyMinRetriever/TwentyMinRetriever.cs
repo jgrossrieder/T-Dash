@@ -22,7 +22,7 @@ namespace AstroRetrievers.TwentyMinRetriever
         private const string LOCAL_FILE_FORMAT = "VD_{0:yyyyMMdd}.pdf";
         private const string PAGE_WITH_HOROSCOPE_MARKER = "Les astres et vous";
 
-        private const string HOROSCOPE_PATTERN = @"\s__SIGN__([\S\s]*?)AMOUR\s*([★✩]{1,4})\sJOB\s*([★✩]{1,4})\sVITALITÉ\s*([★✩]{1,4})";
+        private const string HOROSCOPE_PATTERN = @"\s__SIGN__([\S\s]*?)AMOUR\s*([★✩]{1,5})\s*JOB\s*([★✩]{1,5})\s*VITALITÉ\s*([★✩]{1,5})";
         
         public TwentyMinRetriever(ILoggerFactory loggerFactory)
         {
@@ -43,10 +43,14 @@ namespace AstroRetrievers.TwentyMinRetriever
                 {
                     horoscopeSet.Status = HoroscopeStatus.Error;
                 }
-                else
+                else if (horoscopes.Any())
                 {
                     horoscopeSet.Horoscopes = new ObservableCollection<Horoscope>(horoscopes);
                     horoscopeSet.Status = HoroscopeStatus.Valid;
+                }
+                else
+                {
+                    horoscopeSet.Status = HoroscopeStatus.Unavailable;
                 }
             }
             catch (Exception )
@@ -92,9 +96,9 @@ namespace AstroRetrievers.TwentyMinRetriever
                     continue;
                 }
                 Horoscope horoscope = new Horoscope() { Sign = sign, GlobalText = FormatText(match.Groups[1].Value) };
-                horoscope.Topics.Add(new HoroscopeTopic() { Title = "Amour", TotalStars = 4, Stars = match.Groups[2].Value.Count(c => c == '★') });
-                horoscope.Topics.Add(new HoroscopeTopic() { Title = "Job", TotalStars = 4, Stars = match.Groups[3].Value.Count(c => c == '★') });
-                horoscope.Topics.Add(new HoroscopeTopic() { Title = "Vitalité", TotalStars = 4, Stars = match.Groups[4].Value.Count(c => c == '★') });
+                horoscope.Topics.Add(new HoroscopeTopic() { Title = "Amour", TotalStars = 5, Stars = match.Groups[2].Value.Count(c => c == '★') });
+                horoscope.Topics.Add(new HoroscopeTopic() { Title = "Job", TotalStars = 5, Stars = match.Groups[3].Value.Count(c => c == '★') });
+                horoscope.Topics.Add(new HoroscopeTopic() { Title = "Vitalité", TotalStars = 5, Stars = match.Groups[4].Value.Count(c => c == '★') });
                 horoscopes.Add(horoscope);
             }
             return horoscopes;

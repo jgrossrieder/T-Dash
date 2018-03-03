@@ -1,5 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Astro = {
+    text: 'Astro',
+    link: '/astro',
+    icon: 'icon-star'
+};
 var Home = {
     text: 'Home',
     link: '/home',
@@ -382,6 +387,7 @@ var headingMore = {
 };
 exports.menu = [
     headingMain,
+    Astro,
     Home,
     Dashboard,
     Widgets,

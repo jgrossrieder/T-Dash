@@ -38,15 +38,22 @@ namespace AstroRetrievers.TwentyMinRetriever
             try
             {
                 await DownloadFile(pdfUrl, localPath);
-                List<Horoscope> horoscopes = ExtractHoroscope( localPath);
-                if (horoscopes == null || !horoscopes.Any())
+                if (!File.Exists(localPath))
                 {
                     horoscopeSet.Status = HoroscopeStatus.Unavailable;
                 }
-                else 
+                else
                 {
-                    horoscopeSet.Horoscopes = new ObservableCollection<Horoscope>(horoscopes);
-                    horoscopeSet.Status = HoroscopeStatus.Valid;
+                    List<Horoscope> horoscopes = ExtractHoroscope(localPath);
+                    if (horoscopes == null || !horoscopes.Any())
+                    {
+                        horoscopeSet.Status = HoroscopeStatus.Unavailable;
+                    }
+                    else
+                    {
+                        horoscopeSet.Horoscopes = new ObservableCollection<Horoscope>(horoscopes);
+                        horoscopeSet.Status = HoroscopeStatus.Valid;
+                    }
                 }
             }
             catch (Exception )

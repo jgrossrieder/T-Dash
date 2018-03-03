@@ -59,6 +59,7 @@
     <ProjectReference Include="..\..\Common\Astro\Common.Astro.Repository\Common.Astro.Repository.csproj" />
     <ProjectReference Include="..\..\Services\AstroRetrievers\AstroRetrievers.Common\AstroRetrievers.Common.csproj" />
     <ProjectReference Include="..\..\Tests\Tests.Mocks\Tests.Mocks.csproj" />
+    <ProjectReference Include="..\..\Tests\TwentyMin.Tests\TwentyMin.Tests.csproj" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\routes\astro\horoscope.ts" />

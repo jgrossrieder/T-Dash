@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AstroRetrievers.Common;
+using AstroRetrievers.TwentyMinRetriever;
 using Common.Astro.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Tests.Mocks;
+using TwentyMin.Tests;
 
 namespace Angle
 {
@@ -32,7 +34,7 @@ namespace Angle
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<IRetriever, RetrieverMock>();
+            services.AddSingleton<IRetriever, TwentyMinRetriever>();
             services.AddSingleton<IAstroRepository, AstroRepository>();
         }
 
